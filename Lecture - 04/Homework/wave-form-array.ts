@@ -28,3 +28,26 @@ function generateWaveForm(digits: number[]) {
 
 generateWaveForm([1, 2, 3, 4]);
 generateWaveForm([20, 10, 8, 6, 4, 2]);
+
+console.log("----------------------------------");
+
+function optimizedWaveForm(digits: number[]) {
+  for (let i = 0; i <= digits.length - 1; i += 2) {
+    if (digits[i] < digits[i - 1] && i !== 0) {
+      let temp = digits[i];
+      digits[i] = digits[i - 1];
+      digits[i - 1] = temp;
+    }
+
+    if (digits[i] < digits[i + 1] && i !== digits.length - 1) {
+      let temp = digits[i];
+      digits[i] = digits[i + 1];
+      digits[i + 1] = temp;
+    }
+  }
+
+  console.log(`The generated wave form is ${digits}`);
+}
+
+optimizedWaveForm([1, 2, 3, 4]);
+optimizedWaveForm([20, 10, 8, 6, 4, 2]);
